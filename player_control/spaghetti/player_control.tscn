@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://61c5tnaxi4xa"]
+
+[ext_resource type="Script" path="res://player_control/spaghetti/player_control.gd" id="1_eqnr0"]
+
+[node name="PlayerControl" type="Node"]
+script = ExtResource("1_eqnr0")

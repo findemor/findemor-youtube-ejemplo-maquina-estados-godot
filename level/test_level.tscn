@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://62fp177cvumf"]
+
+[ext_resource type="PackedScene" uid="uid://b3uy8160l1n7o" path="res://level/banana.tscn" id="1_bcvd8"]
+[ext_resource type="PackedScene" uid="uid://k1obab53f3bj" path="res://player/player.tscn" id="2_5jtry"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Banana" parent="." instance=ExtResource("1_bcvd8")]
+position = Vector2(611, 597)
+
+[node name="Player" parent="." instance=ExtResource("2_5jtry")]
+position = Vector2(602, 477)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -76)
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true

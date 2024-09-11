@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3uy8160l1n7o"]
+
+[ext_resource type="Texture2D" uid="uid://b1fn4vhk6a1mm" path="res://level/banana.png" id="1_k4mli"]
+
+[node name="Banana" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.884309
+scale = Vector2(2, 2)
+texture = ExtResource("1_k4mli")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-681, -167, -641, -141, -579, -133, -522, -120, -434, -84, -331, -33, -227, 19, -117, 51, -1, 58, 96, 50, 202, 16, 287, -33, 358, -69, 415, -81, 447, -106, 477, -159, 482, -227, 498, -264, 543, -284, 630, -251, 668, -216, 681, -188, 681, -163, 670, -141, 636, -113, 605, -77, 577, -16, 571, 28, 577, 70, 577, 118, 561, 187, 510, 291, 417, 397, 314, 468, 167, 525, 33, 546, -151, 537, -307, 488, -476, 397, -611, 282, -694, 169, -735, 62, -755, -24, -777, -57, -769, -101, -735, -143)

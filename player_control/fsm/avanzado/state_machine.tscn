@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vej043sqfxjd"]
+
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/state_machine.gd" id="1_jmx35"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_jmx35")

@@ -1,0 +1,99 @@
+[gd_scene load_steps=18 format=3 uid="uid://k1obab53f3bj"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_qvxjn"]
+[ext_resource type="Resource" uid="uid://d3r3y37aa5wxv" path="res://player/resources/player_movement_stats_default.tres" id="3_1uoyc"]
+[ext_resource type="PackedScene" uid="uid://vej043sqfxjd" path="res://player_control/FSM/avanzado/state_machine.tscn" id="7_frttf"]
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/player_states/player_state_idle.gd" id="8_3wprx"]
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/player_states/player_state_running.gd" id="9_2wwem"]
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/player_states/player_state_crouched.gd" id="10_xfhup"]
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/player_states/player_state_falling.gd" id="11_e2ocj"]
+[ext_resource type="Script" path="res://player_control/fsm/avanzado/player_states/player_state_jumping.gd" id="12_poo16"]
+[ext_resource type="Texture2D" uid="uid://7lkgkbvrgx8g" path="res://player/sprites/character_round_purple.png" id="13_2525e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ex0ky"]
+radius = 46.2963
+height = 137.5
+
+[sub_resource type="Animation" id="Animation_ldkl8"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_u7kav"]
+resource_name = "crouch"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_obevy"]
+resource_name = "falling"
+length = 0.8
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_nysct"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_g2o5l"]
+resource_name = "jump"
+loop_mode = 2
+
+[sub_resource type="Animation" id="Animation_64rdt"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dth2h"]
+_data = {
+"RESET": SubResource("Animation_ldkl8"),
+"crouch": SubResource("Animation_u7kav"),
+"falling": SubResource("Animation_obevy"),
+"idle": SubResource("Animation_nysct"),
+"jump": SubResource("Animation_g2o5l"),
+"run": SubResource("Animation_64rdt")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 512
+collision_mask = 7
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_snap_length = 4.0
+safe_margin = 5.0
+script = ExtResource("1_qvxjn")
+movement_stats = ExtResource("3_1uoyc")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="body"]
+scale = Vector2(2.53125, 2.53125)
+texture = ExtResource("13_2525e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, 1)
+scale = Vector2(1.08, 1.12)
+shape = SubResource("CapsuleShape2D_ex0ky")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dth2h")
+}
+autoplay = "idle"
+speed_scale = 1.5
+blend_times = [&"jump", &"falling", 0.5]
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("default_state") instance=ExtResource("7_frttf")]
+default_state = NodePath("PlayerStateIdle")
+
+[node name="PlayerStateIdle" type="Node" parent="StateMachine"]
+script = ExtResource("8_3wprx")
+
+[node name="PlayerStateRunning" type="Node" parent="StateMachine"]
+script = ExtResource("9_2wwem")
+
+[node name="PlayerStateCrouched" type="Node" parent="StateMachine"]
+script = ExtResource("10_xfhup")
+
+[node name="PlayerStateFalling" type="Node" parent="StateMachine"]
+script = ExtResource("11_e2ocj")
+
+[node name="PlayerStateJumping" type="Node" parent="StateMachine"]
+script = ExtResource("12_poo16")

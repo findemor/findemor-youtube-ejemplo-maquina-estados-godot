@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bedo7fcp0l1me"]
+
+[sub_resource type="Gradient" id="Gradient_vv00j"]
+offsets = PackedFloat32Array(0, 0.360656, 0.52459, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.336066, 0.336066, 0.336066, 1, 0.52459, 0.52459, 0.52459, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44vwl"]
+gradient = SubResource("Gradient_vv00j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_la36p"]
+lifetime_randomness = 0.16
+particle_flag_disable_z = true
+angle_min = -129.4
+angle_max = 178.0
+inherit_velocity_ratio = 0.361
+direction = Vector3(1, -7.415, 0)
+initial_velocity_min = 56.18
+initial_velocity_max = 280.89
+gravity = Vector3(0, 98, 0)
+scale_max = 30.0
+color = Color(1, 1, 0.133333, 1)
+color_ramp = SubResource("GradientTexture1D_44vwl")
+
+[node name="Chispas" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_la36p")
+trail_lifetime = 0.2

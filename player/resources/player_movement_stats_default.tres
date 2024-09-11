@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CharacterMovementStats" load_steps=2 format=3 uid="uid://d3r3y37aa5wxv"]
+
+[ext_resource type="Script" path="res://player/resources/character_movement_stats.gd" id="1_w64li"]
+
+[resource]
+script = ExtResource("1_w64li")
+running_speed = 1000.0
+running_acceleration = 5000.0
+running_decceleration = 15000.0
+jump_speed = -1500.0
+drop_jump_speed = -1500.0
+in_air_speed = 937.5
+in_air_acceleration = 5000.0
+jump_small_speed = -700.0
+jumping_decceleration = 5000.0
+can_climbing = true
+climbing_speed = 750.0
+automove_ledge_climb = Vector2(1250, -325)
+MAX_VELOCITY_Y_TO_GRAB_WALLS = 3750.0
+MOVEMENT_REDUCTION_AFTER_AUTOMOVE = 0.5
